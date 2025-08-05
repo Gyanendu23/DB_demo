@@ -2,7 +2,7 @@ FROM openjdk:17-jdk-slim
 
 WORKDIR /app
 
-COPY target/violetApple-docker.jar app.jar
+COPY target/deutsche-springboot-demo.jar app.jar
 
 EXPOSE 8080
 

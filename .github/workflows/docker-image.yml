@@ -24,12 +24,12 @@ jobs:
         run: mvn clean package -DskipTests
 
       - name: Log in to Docker Hub using CLI
-        run: docker login -u Gyanendu23 -p ${{ secrets.SPRING_SECRET }}
+        run: docker login -u Gyanendu23 -p ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker Image
         run: |
-          docker build -t Gyanendu23/violetapple-springboot-project:latest .
+          docker build -t Gyanendu23/deutsche-springboot-demo:latest .
 
       - name: Push Docker Image to Docker Hub
         run: |
-          docker push Gyanendu23/violetapple-springboot-project:latest
+          docker push Gyanendu23/deutsche-springboot-demo:latest
