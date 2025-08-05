@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up JDK 17
         uses: actions/setup-java@v3
@@ -21,15 +21,15 @@ jobs:
           distribution: 'temurin'
 
       - name: Build with Maven
-        run: mvn clean package -DskipTests
+        run: mvn clean package
 
       - name: Log in to Docker Hub using CLI
-        run: docker login -u Gyanendu23 -p ${{ secrets.DOCKER_PASSWORD }}
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
 
       - name: Build Docker Image
         run: |
-          docker build -t Gyanendu23/deutsche-springboot-demo:latest .
+          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/deutsche-springboot-demo:latest .
 
       - name: Push Docker Image to Docker Hub
         run: |
-          docker push Gyanendu23/deutsche-springboot-demo:latest
+          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/deutsche-springboot-demo:latest
